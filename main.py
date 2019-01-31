@@ -40,9 +40,9 @@ Mandatory arguments:
 if len(argument) < 3:
     print (UsageMSG)
     exit()
-#if argument[2] > 365:
-#    print (UsageMSG)
-#    exit()
+if int(argument[2]) > 365:
+    print (UsageMSG)
+    exit()
 
 date = argument[1]
 print (final_dates(date))
