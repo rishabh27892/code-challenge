@@ -7,6 +7,8 @@ yyyy = 0
 month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday','saturday', 'sunday']
 
+
+#date parsing of the initial input to break it into dd, mm, yyyy element and checking basic date restrictions(months with 30 days are checked by datetime lib)
 def parsfun(date):
     fail = False
     postdate = date.split("-")
@@ -27,9 +29,11 @@ def parsfun(date):
         exit()
     return [mm, dd, yyyy]
 
+# leap year condition check via  library
 def leaplib(year):
     return calendar.isleap(year)
 
+# leap year condition check without library
 def leapfun(year):
     if year%4 == 0 and year%100!=0:
         return True
@@ -38,6 +42,7 @@ def leapfun(year):
     else:
         return False
 
+# weekly price change based on the week of the month
 def weeklyprice(date):
     if 0 < date < 8:
         price = 0.05
@@ -51,9 +56,9 @@ def weeklyprice(date):
         price = 0.25
     else:
         price = 0
-    print (price)
     return price
 
+# final date function to perform corner condition (February 28/29 based on the leap year)
 def final_dates(date):
     dates = parsfun(date)
     condition = leapfun(dates[2])
@@ -66,39 +71,19 @@ def final_dates(date):
             exit()
     return [dates[0], dates[1], dates[2]]
 
+# checks if it is a weekday or not
 def check_day(date):
     # format is yyyy, mm, dd
     day = datetime.date(date[2], date[0], date[1]).weekday()
     return day
 
-def bob_tool(date, days):
-    print ("here is where bob's tool will work with days: " +  str(date) + " and number of days: " + str(days))
-
+# finds the next valid date after adding certain number of days
 def date_add(date, days):
     dates = date
     d1 = datetime.date(dates[2], dates[0], dates[1])
     d0 = d1 + timedelta(int(days))
     return d0
-
-
-def while_fun(date, days):
-    P = 0
-    new_date = date
-    while days != 0:
-        f_date = final_dates(new_date)
-        print f_date
-        print (str(P) + " " + str(days))
-        print (f_date[1])
-        print (weeklyprice(f_date[1]))
-        if check_day(f_date) == 5 or check_day(f_date) == 6:
-            print "it is a weekend"
-        else:
-            P = weeklyprice(f_date[1]) + P
-        new_date = reformat(date_add(f_date, 1))
-        print new_date
-        days = days - 1
-    print ("The total price including weekends is: " + str(P))
-
+# reformatting due to different formats of python inbuilt library and input taken by the user
 def reformat(date):
     date = str(date)
     postdate = date.split("-")
@@ -107,3 +92,19 @@ def reformat(date):
     dd = postdate[2]
     f_date = mm + "-" + dd + "-" + yyyy
     return f_date
+
+# bob's tool calculating the total cost of bananas
+def bob_tool(date, days):
+    P = 0
+    new_date = date
+    while days != 0:
+        f_date = final_dates(new_date)
+        # check to ignore weekends
+        if check_day(f_date) == 5 or check_day(f_date) == 6:
+            pass
+        else:
+            P = weeklyprice(f_date[1]) + P
+        new_date = reformat(date_add(f_date, 1))
+        days = days - 1
+    return P
+
