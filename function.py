@@ -1,8 +1,11 @@
 import datetime
 import calendar
+from datetime import timedelta
 mm = 0
 dd = 0
 yyyy = 0
+month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday','saturday', 'sunday']
 
 def parsfun(date):
     fail = False
@@ -69,6 +72,8 @@ def check_day(date):
 def bob_tool(date, days):
     print ("here is where bob's tool will work with days: " +  str(date) + " and number of days: " + str(days))
 
-
-def date_add(date, days):
-    print (date)
+def temp_date_add(date, days):
+    dates = date
+    d1 = datetime.date(dates[2], dates[1], dates[0])
+    d0 = d1 + timedelta(int(days))
+    print d0
