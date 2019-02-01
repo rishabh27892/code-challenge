@@ -7,8 +7,8 @@ yyyy = 0
 def parsfun(date):
     fail = False
     postdate = date.split(".")
-    dd = int(postdate[0])
-    mm = int(postdate[1])
+    dd = int(postdate[1])
+    mm = int(postdate[0])
     yyyy = int(postdate[2])
     if dd < 1 or dd > 31:
         print ("invalid date")
@@ -65,3 +65,10 @@ def check_day(date):
     # format is yyyy, mm, dd
     day = datetime.date(date[2], date[1], date[0]).weekday()
     return day
+
+def bob_tool(date, days):
+    print ("here is where bob's tool will work with days: " +  str(date) + " and number of days: " + str(days))
+
+
+def date_add(date, days):
+    print (date)
