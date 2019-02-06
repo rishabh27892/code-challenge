@@ -46,8 +46,11 @@ class bobsbudget_test(unittest.TestCase):
         try:
             response = GETf(input_date['example'], input_day['example'])
             response2 = bob_tool(input_date['example'], input_day['example'])
-            print "Rest Price: " + str(response) + " Function price: " +  str(response2)
-            assert str(response) == str(response2), "Value mismatch"
+            data = response.json()
+            TotalCost = data['totalCost']
+            TotalCost = TotalCost[1:]
+            print "Rest Price: " + str(TotalCost) + " Function price: " +  str(response2)
+            assert str(TotalCost) == str(response2), "Value mismatch"
         except:
             exc_info_p = traceback.format_exception(*sys.exc_info())
             for i in range(1,len(exc_info_p)):
@@ -60,8 +63,11 @@ class bobsbudget_test(unittest.TestCase):
         try:
             response = GETf(input_date['feb29leap'], input_day['feb29leap'])
             response2 = bob_tool(input_date['feb29leap'], input_day['feb29leap'])
-            print "Rest Price: " + str(response) + " Function price: " +  str(response2)
-            assert str(response) == str(response2), "Value mismatch"
+            data = response.json()
+            TotalCost = data['totalCost']
+            TotalCost = TotalCost[1:]
+            print "Rest Price: " + str(TotalCost) + " Function price: " +  str(response2)
+            assert str(TotalCost) == str(response2), "Value mismatch"
         except:
             exc_info_p = traceback.format_exception(*sys.exc_info())
             for i in range(1,len(exc_info_p)):
@@ -74,8 +80,11 @@ class bobsbudget_test(unittest.TestCase):
 
             response = GETf(input_date['feb29nonleap'], input_day['feb29nonleap'])
             response2 = bob_tool(input_date['feb29leap'], input_day['feb29nonleap'])
-            print "Rest Price: " + str(response) + " Function price: " +  str(response2)
-            assert str(response) == str(response2), "Value mismatch"
+            data = response.json()
+            TotalCost = data['totalCost']
+            TotalCost = TotalCost[1:]
+            print "Rest Price: " + str(TotalCost) + " Function price: " +  str(response2)
+            assert str(TotalCost) == str(response2), "Value mismatch"
         except:
             exc_info_p = traceback.format_exception(*sys.exc_info())
             for i in range(1,len(exc_info_p)):
@@ -87,8 +96,11 @@ class bobsbudget_test(unittest.TestCase):
         try:
             response = GETf(input_date['aug27bday'], input_day['aug27bday'])
             response2 = bob_tool(input_date['aug27bday'], input_day['aug27bday'])
-            print "Rest Price: " + str(response) + " Function price: " +  str(response2)
-            assert str(response) == str(response2), "Value mismatch"
+            data = response.json()
+            TotalCost = data['totalCost']
+            TotalCost = TotalCost[1:]
+            print "Rest Price: " + str(TotalCost) + " Function price: " +  str(response2)
+            assert str(TotalCost) == str(response2), "Value mismatch"
         except:
             exc_info_p = traceback.format_exception(*sys.exc_info())
             for i in range(1,len(exc_info_p)):
@@ -100,8 +112,11 @@ class bobsbudget_test(unittest.TestCase):
         try:
             response = GETf(input_date['sept30'], input_day['sept30'])
             response2 = bob_tool(input_date['sept30'], input_day['sept30'])
-            print "Rest Price: " + str(response) + " Function price: " +  str(response2)
-            assert str(response) == str(response2), "Value mismatch"
+            data = response.json()
+            TotalCost = data['totalCost']
+            TotalCost = TotalCost[1:]
+            print "Rest Price: " + str(TotalCost) + " Function price: " +  str(response2)
+            assert str(TotalCost) == str(response2), "Value mismatch"
         except:
             exc_info_p = traceback.format_exception(*sys.exc_info())
             for i in range(1,len(exc_info_p)):

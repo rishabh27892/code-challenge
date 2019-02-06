@@ -116,8 +116,6 @@ endpoint = "https://bananabudget.azurewebsites.net/"
 def GETf(date, days):
     call = endpoint + "?startDate=" + date + "&numberOfDays=" + str(days)
     response = requests.get(call)
-    response = response.text[15:]
-    response = response[:-2]
     return response
 
 
